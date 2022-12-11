@@ -1,0 +1,8 @@
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\bin\Debug\BatalhaPokemon.exe.config
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\bin\Debug\BatalhaPokemon.exe
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\bin\Debug\BatalhaPokemon.pdb
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.csproj.AssemblyReference.cache
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.csproj.SuggestedBindingRedirects.cache
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.csproj.CoreCompileInputs.cache
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.exe
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.pdb
