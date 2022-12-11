@@ -11,10 +11,6 @@ namespace BatalhaPokemon
     {
         static void Main(string[] args)
         {
-            int escolha;
-            string pokeUsado;
-
-
             Console.WriteLine("Bem vindo à batalha de mestres pokémon\n");
             Console.Write("Diga seu nick: ");
 
@@ -34,56 +30,12 @@ namespace BatalhaPokemon
 
             menu();
 
-            //var poke1 = new Pokemon("Cyndaquil", "Fogo", 12);
-
-            //var poke2 = new Pokemon("Totodile", "Água", 15);
-
-            //var poke3 = new Pokemon("Chikorita", "Planta", 10);
-
-            //do
-            //{
-            //    Console.WriteLine("1 - " + poke1.NomePokemon);
-            //    Console.WriteLine("2 - " + poke2.NomePokemon);
-            //    Console.WriteLine("3 - " + poke3.NomePokemon);
-            //    Console.Write("Pokémon número: ");
-            //    escolha = int.Parse(Console.ReadLine());
-
-            //    if (escolha != 1 && escolha != 2 && escolha != 3)
-            //        Console.WriteLine("Número inválido. Escolha 1,2 ou 3.");
-            //}
-            //while (escolha != 1 && escolha != 2 && escolha != 3);
-            
-            //if (escolha == 1)
-            //{
-            //    pokeUsado = poke1.NomePokemon;
-            //    Console.WriteLine();
-            //    Console.WriteLine(pokeUsado + " foi selecionado");
-            //    Console.WriteLine("Tipo: " + poke1.Tipo);
-            //    Console.WriteLine("Força: " + poke1.Forca);
-            //}
-            //else if (escolha == 2)
-            //{
-            //    pokeUsado = poke2.NomePokemon;
-            //    Console.WriteLine();
-            //    Console.WriteLine(pokeUsado + " foi selecionado");
-            //    Console.WriteLine("Tipo: " + poke2.Tipo);
-            //    Console.WriteLine("Força: " + poke2.Forca);
-            //}
-            //else if (escolha == 3)
-            //{
-            //    pokeUsado = poke3.NomePokemon;
-            //    Console.WriteLine();
-            //    Console.WriteLine(pokeUsado + " foi selecionado");
-            //    Console.WriteLine("Tipo: " + poke3.Tipo);
-            //    Console.WriteLine("Força: " + poke3.Forca);
-            //}
-
-            var arboc = new Pokemon("Arbok", "Veneno", 10);
+            var poke4 = new Pokemon("Arbok", "Veneno", 10);
 
             Console.WriteLine();
-            Console.WriteLine("Seu adversário é: {0}", arboc.NomePokemon);
-            Console.WriteLine("Tipo: " + arboc.Tipo);
-            Console.WriteLine("Força: " + arboc.Forca);
+            Console.WriteLine("Seu adversário é: {0}", poke4.NomePokemon);
+            Console.WriteLine("Tipo: " + poke4.Tipo);
+            Console.WriteLine("Força: " + poke4.Forca);
 
             Console.WriteLine();
             Console.WriteLine("Precione qualquer tecla para começar");
@@ -98,7 +50,7 @@ namespace BatalhaPokemon
 
 
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
         public static void start()
         {
