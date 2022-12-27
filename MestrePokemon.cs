@@ -9,6 +9,16 @@ namespace BatalhaPokemon
     public class MestrePokemon
     {
 
-        public string NomeMestre { get; set; }
+        public string Player { get; set; }
+
+        public MestrePokemon(string player)
+        {
+            while (string.IsNullOrEmpty(player))
+            {
+                Console.Write("Digite um nome: ");
+                player = Console.ReadLine();
+            }
+            Player = player;
+        }
     }
 }
