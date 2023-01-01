@@ -1,0 +1,6 @@
+﻿1 - Cyndaquil, fogo, 10
+2 - Totodile, água, 10
+3 - Chikorita, planta, 10
+4 - Charmander, fogo, 10
+5 - Bulbasaur, planta, 10
+6 - Squirtle, água, 10

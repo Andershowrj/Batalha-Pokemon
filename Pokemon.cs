@@ -8,6 +8,7 @@ namespace BatalhaPokemon
 {
     public class Pokemon
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Tipo { get; set; }
         public int Vida { get; private set; } = 100;
@@ -17,14 +18,21 @@ namespace BatalhaPokemon
         /// <summary>
         /// Cria o Pokémons com nome, tipo e força de ataque
         /// </summary>
-        /// <param name="NomePokemon">Nome do Pokémon</param>
+        /// <param name="Nome">Nome do Pokémon</param>
         /// <param name="Tipo">Tipo do Pokémon</param>
         /// <param name="Forca">Força de ataque do Pokémon</param>
-        public Pokemon(string NomePokemon, string Tipo, int Forca)
+        public Pokemon(string nome, string tipo, int forca)
         {
-            this.Nome = NomePokemon;
-            this.Tipo = Tipo;
-            this.Forca = Forca;
+            Nome = nome;
+            Tipo = tipo;
+            Forca = forca;
+        }
+        public Pokemon(int id, string nome, string tipo, int forca)
+        {
+            Id = id;
+            Nome = nome;
+            Tipo = tipo;
+            Forca = forca;
         }
         public void usarCura()
         {
