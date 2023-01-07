@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 0,
+    "Nome": "Cyndaquil",
+    "Tipo": "fogo",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  },
+  {
+    "Id": 0,
+    "Nome": "Totodile",
+    "Tipo": "água",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  },
+  {
+    "Id": 0,
+    "Nome": "Chikorita",
+    "Tipo": "planta",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  },
+  {
+    "Id": 0,
+    "Nome": "Charmander",
+    "Tipo": "fogo",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  },
+  {
+    "Id": 0,
+    "Nome": "Bulbasaur",
+    "Tipo": "planta",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  },
+  {
+    "Id": 0,
+    "Nome": "Squirtle",
+    "Tipo": "água",
+    "Vida": 100,
+    "Forca": 10,
+    "Cura": 20
+  }
+]

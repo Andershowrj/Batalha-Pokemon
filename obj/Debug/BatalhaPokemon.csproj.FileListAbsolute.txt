@@ -6,3 +6,6 @@ C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug
 C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.csproj.CoreCompileInputs.cache
 C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.exe
 C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.pdb
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\BatalhaPokemon\obj\Debug\BatalhaPokemon.csproj.CopyComplete

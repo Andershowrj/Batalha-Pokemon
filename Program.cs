@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
+using BatalhaPokemon.Models;
 
 namespace BatalhaPokemon
 {
@@ -12,8 +15,16 @@ namespace BatalhaPokemon
         static void Main(string[] args)
         {
             //---------ÁREA DE TESTES-------------
+            
 
-            //listaDePokemons();
+
+
+            //serializarPokemons();
+            //listarPokemonsJson();
+
+
+
+
 
             //---------ÁREA DE TESTES-------------
 
@@ -66,6 +77,7 @@ namespace BatalhaPokemon
                 Console.WriteLine("4 - Acessar POKEDEX");
                 Console.WriteLine("\n5 - Sair");
 
+                //Receber a escolha do jogador
                 string opcao = Console.ReadLine();
                 Console.Clear();
                 Console.WriteLine();
@@ -73,7 +85,6 @@ namespace BatalhaPokemon
                 switch (opcao)
                 {
                     case "1":
-                        //(string, string, int) tupla = ("Cyndaquil", "Fogo", 12);
                         Pokemon poke1 = new Pokemon("Cyndaquil", "Fogo", 12);
                         Console.WriteLine(poke1.Nome + " foi selecionado");
                         Console.WriteLine("Tipo: " + poke1.Tipo);
@@ -84,7 +95,6 @@ namespace BatalhaPokemon
                         break;
                     
                     case "2":
-                        //(string, string, int) tupla = ("Totodile", "Água", 15);
                         Pokemon poke2 = new Pokemon("Totodile", "Água", 15);
                         Console.WriteLine(poke2.Nome + " foi selecionado");
                         Console.WriteLine("Tipo: " + poke2.Tipo);
@@ -105,7 +115,7 @@ namespace BatalhaPokemon
                         break;
 
                     case "4":
-                        listaDePokemons();
+                        listarPokemonsJson();
                         break;
 
                     case "5":
@@ -120,8 +130,26 @@ namespace BatalhaPokemon
         }
         static Pokemon criarPokemon(string nome, string tipo, int forca)
         {
+
+            string conteudoJson = File.ReadAllText(@"C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\" +
+                @"BatalhaPokemon\Arquivos\pokemonsLista.json");
+            List<PokemonJson> listaPokemon = JsonConvert.DeserializeObject<List<PokemonJson>>(conteudoJson);
+
+            //Lista todos os pokemons cadastrados
+            foreach (PokemonJson dadosPokemons in listaPokemon)
+            {
+                Console.WriteLine($"{dadosPokemons.Nome}, tipo {dadosPokemons.Tipo}, ataque {dadosPokemons.Forca}");
+            }
+
             Pokemon poke = new Pokemon(nome, tipo, forca);
             return poke;
+
+
+
+
+
+            //Pokemon poke = new Pokemon(nome, tipo, forca);
+            //return poke;
         }
         public static void enemyPokemon()
         {
@@ -157,7 +185,7 @@ namespace BatalhaPokemon
                     break;
             }
         }
-        public static void listaDePokemons()
+        public static void serializarPokemons()
         {
             //Falta implementar o Id
             Console.WriteLine();
@@ -169,14 +197,11 @@ namespace BatalhaPokemon
             listaPokemon.Add(new Pokemon("Bulbasaur", "planta", 10));
             listaPokemon.Add(new Pokemon("Squirtle", "água", 10));
 
-            //Mostra a quantidade total de pokemons cadastrados no jogo
-            Console.WriteLine($"A sua pokedex tem {listaPokemon.Count} pokemons cadastrados");
+            //Serializa a lista listaPokemon em um arquivo externo no formato json
+            string serializado = JsonConvert.SerializeObject(listaPokemon, Formatting.Indented);
+            File.WriteAllText(@"C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\" +
+                @"BatalhaPokemon\Arquivos\pokemonsLista.json", serializado);
 
-            //Lista todos os pokemons cadastrados
-            foreach (Pokemon pokemon in listaPokemon)
-            {
-                Console.WriteLine($"{pokemon.Nome}, tipo {pokemon.Tipo}, ataque {pokemon.Forca}");
-            }
             Console.WriteLine("\n\nPrecione qualque tecla para continuar");
             Console.ReadKey();
         }
@@ -210,6 +235,27 @@ namespace BatalhaPokemon
             Console.Clear();
 
 
+        }
+        public static void listarPokemonsJson()
+        {
+            string conteudoJson = File.ReadAllText(@"C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\" +
+                @"BatalhaPokemon\Arquivos\pokemonsLista.json");
+            List<PokemonJson> listaPokemon = JsonConvert.DeserializeObject<List<PokemonJson>>(conteudoJson);
+
+            //Mostra a quantidade total de pokemons cadastrados no jogo
+            Console.WriteLine($"A sua pokedex tem {listaPokemon.Count} pokemons cadastrados");
+
+            //Lista todos os pokemons cadastrados
+            foreach (PokemonJson dadosPokemons in listaPokemon)
+            {
+                Console.WriteLine($"{dadosPokemons.Nome}, tipo {dadosPokemons.Tipo}, ataque {dadosPokemons.Forca}");
+            }
+
+            Console.WriteLine("\n\nPrecione qualque tecla para continuar");
+            Console.ReadKey();
+
+
+            Console.ReadKey();
         }
 
     }
