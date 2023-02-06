@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BatalhaPokemon.Interfaces;
+using BatalhaPokemon.Models;
 
 namespace BatalhaPokemon
 {
@@ -53,6 +54,15 @@ namespace BatalhaPokemon
                 Console.WriteLine("Cura usada");
             }
 
+        }
+        public void danoRecebido(int dano)
+        {
+            //Reduz a vida garantindo que ela nunca fique negativa (minimo zero)
+            Vida = Math.Max(0, Vida - dano);
+        }
+        public void cura(int valor)
+        {
+            Vida = Math.Min(100, Vida + valor);
         }
     }
 }

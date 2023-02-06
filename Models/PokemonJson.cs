@@ -8,6 +8,13 @@ namespace BatalhaPokemon.Models
 {
     internal class PokemonJson
     {
+        public PokemonJson(string nome, string tipo, int forca)
+        {
+            Nome = nome;
+            Tipo = tipo;
+            Forca = forca;
+        }
+
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Tipo { get; set; }

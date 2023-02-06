@@ -15,13 +15,12 @@ namespace BatalhaPokemon
         static void Main(string[] args)
         {
             //---------ÁREA DE TESTES-------------
-            
+
 
 
 
             //serializarPokemons();
             //listarPokemonsJson();
-
 
 
 
@@ -40,21 +39,11 @@ namespace BatalhaPokemon
             Console.Clear();
             Console.WriteLine($"Ok {p1.Player}! Agora escolha o seu Pokémon\n");
 
-            //ATÉ AQUI TUDO CERTO -----------
-
-            //Pokemon poke = criarPokemon();
-
-            menu();
-
-            //Console.WriteLine(tupla + " foi selecionado");
-            //Console.WriteLine("Tipo: " + poke2.Tipo);
-            //Console.WriteLine("Força: " + poke2.Forca);
-            //Console.WriteLine();
-
+            Pokemon escolhido = menu();
             enemyPokemon();
+            
 
-            Console.WriteLine();
-            Console.WriteLine("Precione qualquer tecla para começar");
+            Console.WriteLine("\nPrecione qualquer tecla para começar");
             Console.ReadKey();
             
             start();
@@ -62,94 +51,57 @@ namespace BatalhaPokemon
 
             //Console.ReadKey();
         }
-        
-        public static void menu()
+        public static Pokemon menu()
         {
-            bool exibirMenu = true;
-
-            while(exibirMenu == true)
+            List<Pokemon> pokemons = new List<Pokemon>()
             {
+                new Pokemon("Cyndaquil", "Fogo", 12),
+                new Pokemon("Totodile", "Água", 15),
+                new Pokemon("Chikorita", "Planta", 10)
+            };
+            while (true)
+            {
+                int i = 1;
+                foreach (Pokemon poke in pokemons)
+                {
+                    Console.WriteLine(i + " - " + poke.Nome);
+                    i++;
+                }
 
-                //Console.WriteLine("Escolha seu Pokémon:");
-                Console.WriteLine("1 - Cyndaquil");
-                Console.WriteLine("2 - Totodile");
-                Console.WriteLine("3 - Chikorita");
-                Console.WriteLine("4 - Acessar POKEDEX");
-                Console.WriteLine("\n5 - Sair");
+                Console.WriteLine("\n" + i + " - Acessar POKEDEX");
+                //++ na frente da variavel para ser acrescentado o valor antes da saída
+                Console.WriteLine(++i + " - Sair");
 
                 //Receber a escolha do jogador
-                string opcao = Console.ReadLine();
+                int opcao = int.Parse(Console.ReadLine());
                 Console.Clear();
                 Console.WriteLine();
 
                 switch (opcao)
                 {
-                    case "1":
-                        Pokemon poke1 = new Pokemon("Cyndaquil", "Fogo", 12);
-                        Console.WriteLine(poke1.Nome + " foi selecionado");
-                        Console.WriteLine("Tipo: " + poke1.Tipo);
-                        Console.WriteLine("Força: " + poke1.Forca);
+                    case 1:
+                    case 2:
+                    case 3:
+                        Pokemon pokemonEscolhido = pokemons[Convert.ToInt16(opcao) - 1];
+                        Console.WriteLine(pokemonEscolhido.Nome + " foi selecionado");
+                        Console.WriteLine("Tipo: " + pokemonEscolhido.Tipo);
+                        Console.WriteLine("Força: " + pokemonEscolhido.Forca);
                         Console.WriteLine();
-                        opcao = poke1.Nome;
-                        exibirMenu = false;
-                        break;
-                    
-                    case "2":
-                        Pokemon poke2 = new Pokemon("Totodile", "Água", 15);
-                        Console.WriteLine(poke2.Nome + " foi selecionado");
-                        Console.WriteLine("Tipo: " + poke2.Tipo);
-                        Console.WriteLine("Força: " + poke2.Forca);
-                        Console.WriteLine();
-                        opcao = poke2.Nome;
-                        exibirMenu = false;
-                    break;
-                    
-                    case "3":
-                        Pokemon poke3 = new Pokemon("Chikorita", "Planta", 10);
-                        Console.WriteLine(poke3.Nome + " foi selecionado");
-                        Console.WriteLine("Tipo: " + poke3.Tipo);
-                        Console.WriteLine("Força: " + poke3.Forca);
-                        Console.WriteLine();
-                        opcao = poke3.Nome;
-                        exibirMenu = false;
-                        break;
-
-                    case "4":
+                        return pokemonEscolhido;
+                    case 4:
                         listarPokemonsJson();
                         break;
 
-                    case "5":
+                    case 5:
                         Environment.Exit(0);
                         break;
 
                     default:
                         Console.WriteLine("Número inválido.Escolha 1, 2 ou 3.");
                         break;
+
                 }
             }
-        }
-        static Pokemon criarPokemon(string nome, string tipo, int forca)
-        {
-
-            string conteudoJson = File.ReadAllText(@"C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\" +
-                @"BatalhaPokemon\Arquivos\pokemonsLista.json");
-            List<PokemonJson> listaPokemon = JsonConvert.DeserializeObject<List<PokemonJson>>(conteudoJson);
-
-            //Lista todos os pokemons cadastrados
-            foreach (PokemonJson dadosPokemons in listaPokemon)
-            {
-                Console.WriteLine($"{dadosPokemons.Nome}, tipo {dadosPokemons.Tipo}, ataque {dadosPokemons.Forca}");
-            }
-
-            Pokemon poke = new Pokemon(nome, tipo, forca);
-            return poke;
-
-
-
-
-
-            //Pokemon poke = new Pokemon(nome, tipo, forca);
-            //return poke;
         }
         public static void enemyPokemon()
         {
@@ -253,9 +205,9 @@ namespace BatalhaPokemon
 
             Console.WriteLine("\n\nPrecione qualque tecla para continuar");
             Console.ReadKey();
+            Console.WriteLine("\n\n");
+            Console.WriteLine("Escolha seu Pokemon:");
 
-
-            Console.ReadKey();
         }
 
     }
