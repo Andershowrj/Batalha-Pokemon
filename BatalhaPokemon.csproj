@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Interfaces\IPokemon.cs" />
     <Compile Include="Models\MestrePokemon.cs" />
-    <Compile Include="Models\PokemonContra.cs" />
     <Compile Include="Models\PokemonJson.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Program.cs" />

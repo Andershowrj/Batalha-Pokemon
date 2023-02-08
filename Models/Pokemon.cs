@@ -27,22 +27,20 @@ namespace BatalhaPokemon
         /// <param name="Nome">Nome do Pokémon</param>
         /// <param name="Tipo">Tipo do Pokémon</param>
         /// <param name="Forca">Força de ataque do Pokémon</param>
+        /// 
+        public override string ToString()
+        {
+            return Nome;
+        }
         public Pokemon(string nome, string tipo, int forca)
         {
             Nome = nome;
             Tipo = tipo;
             Forca = forca;
         }
-        public Pokemon(int id, string nome, string tipo, int forca)
-        {
-            Id = id;
-            Nome = nome;
-            Tipo = tipo;
-            Forca = forca;
-        }
         public void usarCura()
         {
-            if (Vida <= 80 && Vida > 0)
+            if (Vida < 80 && Vida > 0)
             {
                 Vida += 20;
                 Console.WriteLine("Cura usada");

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
@@ -14,18 +11,6 @@ namespace BatalhaPokemon
     {
         static void Main(string[] args)
         {
-            //---------ÁREA DE TESTES-------------
-
-
-
-
-            //serializarPokemons();
-            //listarPokemonsJson();
-
-
-
-
-            //---------ÁREA DE TESTES-------------
 
             Console.WriteLine("Bem vindo à batalha de mestres pokémon\n");
             Console.Write("Diga seu nome: ");
@@ -37,19 +22,16 @@ namespace BatalhaPokemon
             
 
             Console.Clear();
-            Console.WriteLine($"Ok {p1.Player}! Agora escolha o seu Pokémon\n");
+            Console.WriteLine($"Ok {p1}! Agora escolha o seu Pokémon\n");
 
             Pokemon escolhido = menu();
-            enemyPokemon();
-            
+            Pokemon ePoke = enemyPokemon();
 
             Console.WriteLine("\nPrecione qualquer tecla para começar");
             Console.ReadKey();
             
             start();
-
-
-            //Console.ReadKey();
+            batalha(p1, escolhido, ePoke);
         }
         public static Pokemon menu()
         {
@@ -64,7 +46,7 @@ namespace BatalhaPokemon
                 int i = 1;
                 foreach (Pokemon poke in pokemons)
                 {
-                    Console.WriteLine(i + " - " + poke.Nome);
+                    Console.WriteLine(i + " - " + poke);
                     i++;
                 }
 
@@ -83,7 +65,7 @@ namespace BatalhaPokemon
                     case 2:
                     case 3:
                         Pokemon pokemonEscolhido = pokemons[Convert.ToInt16(opcao) - 1];
-                        Console.WriteLine(pokemonEscolhido.Nome + " foi selecionado");
+                        Console.WriteLine(pokemonEscolhido + " foi selecionado");
                         Console.WriteLine("Tipo: " + pokemonEscolhido.Tipo);
                         Console.WriteLine("Força: " + pokemonEscolhido.Forca);
                         Console.WriteLine();
@@ -103,38 +85,31 @@ namespace BatalhaPokemon
                 }
             }
         }
-        public static void enemyPokemon()
+        public static Pokemon enemyPokemon()
         {
+            List<Pokemon> listaEnemyPokemons = new List<Pokemon>()
+            {
+                new Pokemon("Charmander", "fogo", 10),
+                new Pokemon("Squirtle", "água", 10),
+                new Pokemon("Bulbasaur", "planta", 10)
+            };
             //Escolhe aleatoriamente um pokemon adversário
             Random rand = new Random();
-            int enemy = rand.Next(1, 4);
-            string escolhido = "";
+            int enemy = rand.Next(1, listaEnemyPokemons.Count - 1);
             Console.WriteLine("O seu adversário será:");
             switch (enemy)
             {
                 case 1:
-                    Pokemon poke4 = new Pokemon("Charmander", "fogo", 10);
-                    Console.WriteLine(poke4.Nome);
-                    Console.WriteLine("Tipo: " + poke4.Tipo);
-                    Console.WriteLine("Força: " + poke4.Forca);
-                    escolhido = poke4.Nome;
-                    break;
                 case 2:
-                    Pokemon poke5 = new Pokemon("Bulbasaur", "planta", 10);
-                    Console.WriteLine(poke5.Nome);
-                    Console.WriteLine("Tipo: " + poke5.Tipo);
-                    Console.WriteLine("Força: " + poke5.Forca);
-                    escolhido = poke5.Nome;
-                    break;
                 case 3:
-                    Pokemon poke6 = new Pokemon("Squirtle", "água", 10);
-                    Console.WriteLine(poke6.Nome);
-                    Console.WriteLine("Tipo: " + poke6.Tipo);
-                    Console.WriteLine("Força: " + poke6.Forca);
-                    escolhido = poke6.Nome;
-                    break;
+                    Pokemon ePoke = listaEnemyPokemons[Convert.ToInt16(enemy)];
+                    Console.WriteLine(ePoke);
+                    Console.WriteLine("Tipo: " + ePoke.Tipo);
+                    Console.WriteLine("Força: " + ePoke.Forca);
+                    Console.WriteLine();
+                    return ePoke;
                 default:
-                    break;
+                    return listaEnemyPokemons[0];
             }
         }
         public static void serializarPokemons()
@@ -188,7 +163,7 @@ namespace BatalhaPokemon
 
 
         }
-        public static void listarPokemonsJson()
+        public static List<PokemonJson> listarPokemonsJson()
         {
             string conteudoJson = File.ReadAllText(@"C:\Users\Anderson\Documents\Visual Studio 2022\Projetos\" +
                 @"BatalhaPokemon\Arquivos\pokemonsLista.json");
@@ -208,6 +183,70 @@ namespace BatalhaPokemon
             Console.WriteLine("\n\n");
             Console.WriteLine("Escolha seu Pokemon:");
 
+            return listaPokemon;
+        }
+        public static void batalha(MestrePokemon nomeMestre, Pokemon meuPoke, Pokemon enemyPoke)
+        {
+            Console.Clear();
+            Console.WriteLine("Vai começar a batalha pokemon!");
+            Console.WriteLine($"{nomeMestre} com o pokemon {meuPoke} contra o pokemon {enemyPoke}\n");
+
+            int acao, round = 1;
+
+            while (meuPoke.EstaVivo && enemyPoke.EstaVivo)
+            {
+                Console.WriteLine($"Round {round}");
+                round++;
+
+                Console.WriteLine($"{nomeMestre} escolha a sua ação");
+                Console.WriteLine("1 - Atacar\n2 - Curar");
+                
+                acao = int.Parse(Console.ReadLine());
+
+                switch (acao)
+                {
+                    case 1:
+                        enemyPoke.danoRecebido(meuPoke.Forca);
+                        Console.WriteLine($"{meuPoke} causou {meuPoke.Forca} de dano.\n");
+                        break;
+                    case 2:
+                        meuPoke.usarCura();
+                        Console.WriteLine($"{meuPoke} foi curado\n");
+                        break;
+                    default:
+                        Console.WriteLine("Escolha uma opção válida");
+                        break;
+                }
+                Random rand = new Random();
+                int enemyAtaque = rand.Next(1, 4);
+
+                switch (enemyAtaque)
+                {
+                    case 1:
+                    case 2:
+                        meuPoke.danoRecebido(enemyPoke.Forca);
+                        Console.WriteLine($"{enemyPoke} irá atacar");
+                        Console.WriteLine($"{enemyPoke} atacou e causou {enemyPoke.Forca} de dano\n");
+                        break;
+                    case 3:
+                        Console.WriteLine($"{enemyPoke} irá se curar");
+                        enemyPoke.usarCura();
+                        Console.WriteLine($"{enemyPoke} foi curado\n");
+                        break;
+                }
+                string placar = $"{meuPoke}       {enemyPoke}\nHp:{meuPoke.Vida}          Hp:{enemyPoke.Vida}\n";
+                Console.WriteLine(placar);
+
+            }
+            Console.WriteLine("A batalha terminou. Precione qualquer tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
+
+            Console.WriteLine("Fim da batalha pokemon!\n");
+            if (enemyPoke.EstaVivo == false)
+                Console.WriteLine($"Parabéns {nomeMestre}! \nVocê venceu com seu pokemon, {meuPoke}");
+            else
+                Console.WriteLine($"Você perdeu!\nO pokemon {enemyPoke} foi o vencedor");
         }
 
     }
