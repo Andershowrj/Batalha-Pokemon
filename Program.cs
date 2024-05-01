@@ -11,7 +11,7 @@ namespace BatalhaPokemon
     {
         static void Main(string[] args)
         {
-
+            //testando erro do git
             Console.WriteLine("Bem vindo à batalha de mestres pokémon\n");
             Console.Write("Diga seu nome: ");
 
